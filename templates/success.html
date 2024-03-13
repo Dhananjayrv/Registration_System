@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2ecc71; /* Green background color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff; /* White heading color */
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            color: #fff; /* White text color */
+        }
+
+        #fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #e74c3c; /* Red firework color */
+            border-radius: 50%;
+            opacity: 0;
+            animation: explode 1s linear forwards;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes explode {
+            to {
+                width: 200px;
+                height: 200px;
+                margin: -100px 0 0 -100px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes vanish {
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Congratulations! 🎉</h1>
+    <p>Verification successful!</p>
+
+    <!-- Fireworks animation -->
+    <div id="fireworks"></div>
+    <script>
+        const fireworksContainer = document.getElementById('fireworks');
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + 'vw';
+            firework.style.animationDuration = Math.random() * 2 + 1 + 's';
+            fireworksContainer.appendChild(firework);
+
+            firework.addEventListener('animationend', () => {
+                firework.remove();
+            });
+        }
+
+        setInterval(createFirework, 800);
+    </script>
+</body>
+</html>
